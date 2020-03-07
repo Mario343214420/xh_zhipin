@@ -3,6 +3,7 @@
  */
 import React, { Component } from 'react'
 import { InputItem, Button } from 'antd-mobile'
+import Logo from '../../components/logo/logo'
 export default class Login extends Component {
 	state = {
 		userName: '',
@@ -17,6 +18,10 @@ export default class Login extends Component {
 	render() {
 		return (
 			<div>
+				<Logo/>
+				<div>
+					<p className="title">登录</p>
+				</div>
 				<InputItem
 					clear
 					onChange={(v) => this.onChange('userName', v)}

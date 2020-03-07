@@ -3,6 +3,13 @@
  */
 import React, { Component } from 'react'
 import { InputItem, Radio, Button } from 'antd-mobile'
+import Logo from '../../components/logo/logo'
+
+import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
+
+import {register} from '../../redux/actions'
+
 export default class Register extends Component {
 	state = {
 		userName: '',
@@ -28,6 +35,10 @@ export default class Register extends Component {
 		];
 		return (
 			<div>
+				<Logo/>
+				<div>
+					<p className="title">注册</p>
+				</div>
 				<InputItem
 					clear
 					onChange={(v) => this.onChange('userName', v)}
@@ -44,11 +55,11 @@ export default class Register extends Component {
 					placeholder="请重新输入验证您的密码"
 				>密码验证</InputItem>
 				{/*RadioBox*/}
-				<div>
+				<div className="radio-box">
 					{gender.map(
 						i => (
 							<Radio className="my-radio" key={i.value} checked={this.state.value4 === i.value} onChange={() => this.onChange4(i.value)}>
-								{i.label==='w'?'女':'男'}
+								<span className="my-radio-text">{i.label==='w'?'女':'男'}</span>
 							</Radio>
 						)
 					)}
