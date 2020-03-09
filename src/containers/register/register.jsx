@@ -5,10 +5,10 @@ import React, { Component } from 'react'
 import { InputItem, Radio, Button } from 'antd-mobile'
 import Logo from '../../components/logo/logo'
 
-import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
-import {register} from '../../redux/actions'
+import { register } from '../../redux/actions'
 
 export default class Register extends Component {
 	state = {
@@ -18,7 +18,7 @@ export default class Register extends Component {
 		value4: ''
 	};
 	onChange = (name, v) => {
-		this.setState({[name]: v});
+		this.setState({ [name]: v });
 	};
 	onChange4 = (v) => {
 		this.setState({
@@ -41,18 +41,18 @@ export default class Register extends Component {
 				</div>
 				<InputItem
 					clear
-					onChange={(v) => this.onChange('userName', v)}
+					onChange = {(v) => this.onChange('userName', v)}
 					placeholder="请输入您的账号"
 				>账号</InputItem>
 				<InputItem
 					clear
-					onChange={(v) => this.onChange('password', v)}
+					onChange = {(v) => this.onChange('password', v)}
 					placeholder="请输入您的密码"
 				>密码</InputItem>
 				<InputItem
 					clear
-					onChange={(v) => this.onChange('rePassword', v)}
-					placeholder="请重新输入验证您的密码"
+					onChange = {(v) => this.onChange('rePassword', v)}
+					placeholder = "请重新输入验证您的密码"
 				>密码验证</InputItem>
 				{/*RadioBox*/}
 				<div className="radio-box">
