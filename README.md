@@ -418,7 +418,7 @@ export function getRedirectPath(type, header) {
 }
 ```
 #### 2)reducers中使用工具: redux/reducers.js
-```javascript
+```
 import {getRedirectPath} from '../utils';
 
 case AUTH_SUCCESS: // 认证成功
@@ -504,11 +504,11 @@ export const updateUser = (user) => {
 }
 ```
 #### 3)redux/reducers.js
-```javascript
+```
 import {
   RECEIVE_USER,
   RESET_USER
-} from './action-types'
+} from '../redux/action-types'
 
 function user(state = initUser, action) {
   switch (action.type) {

@@ -1,7 +1,4 @@
-/*
-包含所有action creator函数的模块
- */
-
+// 包含所有action creator函数的模块
 import {
 	AUTH_SUCCESS,
 	ERROR_MSG
@@ -11,15 +8,12 @@ import {
 	reqLogin
 } from '../api'
 
-
 // 同步错误消息
-const errorMsg = (msg) => ({type:ERROR_MSG, data: msg})
+const errorMsg = (msg) => ({type:ERROR_MSG, data: msg});
 // 同步成功响应
-const authSuccess = (user) => ({type: AUTH_SUCCESS, data: user})
+const authSuccess = (user) => ({type: AUTH_SUCCESS, data: user});
 
-/*
-异步注册
- */
+// 异步注册
 export function register({username, password, password2, type}) {
 	// 进行前台表单验证, 如果不合法返回一个同步action对象, 显示提示信息
 	if (!username || !password || !type) {
@@ -30,9 +24,10 @@ export function register({username, password, password2, type}) {
 	}
 	return async dispatch => {
 		// 异步ajax请求, 得到响应
-		const response = await reqRegister({username, password, type})
+		console.log({username, password, type});
+		const response = await reqRegister({username, password, type});
 		// 得到响应体数据
-		const result = response.data
+		const result = response.data;
 		// 如果是正确的
 		if (result.code === 0) {
 			// 分发成功的action
@@ -44,20 +39,18 @@ export function register({username, password, password2, type}) {
 	}
 }
 
-/*
-异步登陆
- */
+// 异步登陆
 export const login = ({username, password}) => {
 	if (!username || !password) {
 		return errorMsg('用户密码必须输入')
 	}
 	return async dispatch => {
-		const response = await reqLogin({username, password})
-		const result = response.data
+		const response = await reqLogin({username, password});
+		const result = response.data;
 		if (result.code === 0) {
 			dispatch(authSuccess(result.data))
 		} else {
 			dispatch(errorMsg(result.msg))
 		}
 	}
-}
+};
