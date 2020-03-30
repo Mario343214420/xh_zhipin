@@ -1,17 +1,23 @@
 // 包含所有action creator函数的模块
 import {
 	AUTH_SUCCESS,
-	ERROR_MSG
+	ERROR_MSG,
+	RECEIVE_USER,
+	RECET_USER
 } from './action-types'
+
 import {
 	reqRegister,
-	reqLogin
+	reqLogin,
+	reqUpdateUser
 } from '../api'
 
 // 同步错误消息
 const errorMsg = (msg) => ({type:ERROR_MSG, data: msg});
 // 同步成功响应
 const authSuccess = (user) => ({type: AUTH_SUCCESS, data: user});
+// 同步接收用户
+const receiveUser = (user) => ({type: RECEIVE_USER, data: user})
 
 // 异步注册
 export function register({username, password, password2, type}) {
@@ -38,7 +44,6 @@ export function register({username, password, password2, type}) {
 		}
 	}
 }
-
 // 异步登陆
 export const login = ({username, password}) => {
 	if (!username || !password) {
@@ -55,3 +60,19 @@ export const login = ({username, password}) => {
 		}
 	}
 };
+
+// 同步重置用户
+export const resetUser = (msg) => ({type: RECET_USER, data: msg})
+// 异步更新用户
+export const updateUser  = (user) => {
+	return async dispatch => {
+		// 发送异步ajax请求
+		const response = await reqUpdateUser(user)
+		const result = response.data
+		if (result.code === 0) { // 更新成功
+			dispatch(receiveUser(result.data))
+		} else { // 失败
+			dispatch(resetUser(result.msg))
+		}
+	}
+}

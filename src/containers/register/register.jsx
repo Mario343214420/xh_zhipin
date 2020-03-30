@@ -23,11 +23,6 @@ class Register extends Component {
 	onChange = (name, v) => {
 		this.setState({ [name]: v });
 	};
-	onChange4 = (v) => {
-		this.setState({
-			type: v,
-		});
-	};
 	register = () => {
 		this.props.register(this.state)
 	};
@@ -65,8 +60,8 @@ class Register extends Component {
 				<div className="radio-box">
 					{gender.map(
 						i => (
-							<Radio className="my-radio" key={i.value} checked={this.state.type === i.value} onChange={() => this.onChange4(i.value)}>
-								<span className="my-radio-text">{i.label==='w'?'女':'男'}</span>
+							<Radio className="my-radio" key={i.value} checked={this.state.type === i.value} onChange={() => this.onChange('type', i.value)}>
+								<span className="my-radio-text">{i.value === 0 ? '女' : '男'}</span>
 							</Radio>
 						)
 					)}

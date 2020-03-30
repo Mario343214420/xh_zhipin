@@ -7,6 +7,7 @@ import store from './redux/store'
 import Login from './containers/login/login'
 import Register from './containers/register/register'
 import Main from './containers/main/main'
+import {Redirect} from 'react-router-dom'
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
@@ -15,8 +16,9 @@ ReactDOM.render((
 		<HashRouter>
 			<Switch>
 				<Route path='/register' component={ Register }/>
-				<Route psth='/login' component={ Login }/>
-				<Route component={ Main }/>
+				<Route path='/login' component={ Login }/>
+				<Route path='/main' component={ Main }/>
+				<Redirect to="/main" />
 			</Switch>
 		</HashRouter>
 	</Provider>
