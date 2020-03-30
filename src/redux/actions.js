@@ -46,6 +46,7 @@ export const login = ({username, password}) => {
 	}
 	return async dispatch => {
 		const response = await reqLogin({username, password});
+		console.log(response);
 		const result = response.data;
 		if (result.code === 0) {
 			dispatch(authSuccess(result.data))
